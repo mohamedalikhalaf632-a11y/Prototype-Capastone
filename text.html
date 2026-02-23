@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة صوت صامت (Silent Voice)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-container">
+        <div class="bg-gradient"></div>
+        <div class="grid-overlay"></div>
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        
+        <!-- Login Page -->
+        <div id="loginPage" class="page active">
+            <div class="login-page">
+                <div class="glass-card p-8 md:p-10 w-full max-w-md animate-in">
+                    <!-- Logo -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00d4aa] to-[#0891b2] mb-5">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                        </div>
+                        <h1 class="text-2xl font-bold mb-1" data-i18n="loginTitle">منصة صوت صامت</h1>
+                        <p class="text-[var(--fg-secondary)] text-sm" data-i18n="loginSubtitle">نحو مدينة أفضل معاً</p>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="loginForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="email">البريد الإلكتروني</label>
+                            <input type="email" class="input-field" placeholder="example@email.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="password">كلمة المرور</label>
+                            <input type="password" class="input-field" placeholder="••••••••" required>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 rounded accent-[var(--accent)]">
+                                <span data-i18n="rememberMe">تذكرني</span>
+                            </label>
+                            <a href="#" class="text-[var(--accent)] hover:underline" data-i18n="forgotPassword">نسيت كلمة المرور؟</a>
+                        </div>
+                        <button type="submit" class="btn-primary" data-i18n="loginBtn">تسجيل الدخول</button>
+                    </form>
+
+                    <div class="mt-6 text-center text-sm">
+                        <span class="text-[var(--fg-secondary)]" data-i18n="noAccount">ليس لديك حساب؟</span>
+                        <a href="#" class="text-[var(--accent)] hover:underline font-medium mr-1" data-i18n="register">إنشاء حساب</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="page">
+            <div class="p-4 md:p-6 lg:p-8">
+                <!-- Header -->
+                <header class="glass-card p-4 md:p-5 mb-5 animate-in">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent)] to-cyan-600 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-lg font-bold" data-i18n="dashboardTitle">لوحة التحكم</h1>
+                                <p class="text-xs text-[var(--fg-secondary)]" data-i18n="welcomeMsg">مرحباً </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleTheme()" class="icon-btn" aria-label="Toggle theme">
+                                <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                            </button>
+                            <button onclick="toggleLanguage()" class="icon-btn font-bold text-sm">
+                                <span id="langBtn">EN</span>
+                            </button>
+                            <button onclick="showPage('loginPage')" class="icon-btn text-[var(--danger)]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Navigation -->
+                <nav class="glass-card p-2 mb-5 animate-in delay-1">
+                    <div class="flex gap-1 overflow-x-auto">
+                        <button onclick="showPage('dashboardPage')" class="nav-link active" data-i18n="navDashboard">لوحة التحكم</button>
+                        <button onclick="showPage('complaintPage')" class="nav-link" data-i18n="navComplaint">تقديم شكوى</button>
+                        <button onclick="showPage('complaintsListPage')" class="nav-link" data-i18n="navComplaints">جميع الشكاوي</button>
+                    </div>
+                </nav>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                    <div class="stat-card animate-in delay-1">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[var(--fg-secondary)] text-sm" data-i18n="totalComplaints">إجمالي الشكاوي</span>
+                            <div class="w-9 h-9 rounded-lg bg-[var(--accent)] bg-opacity-15 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold">1,247</div>
+                        <div class="text-xs text-[var(--success)] mt-1">+12% <span data-i18n="fromLastMonth">من الشهر الماضي</span></div>
+                    </div>
+
+                    <div class="stat-card animate-in delay-2">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[var(--fg-secondary)] text-sm" data-i18n="inProgress">جاري المعالجة</span>
+                            <div class="w-9 h-9 rounded-lg bg-blue-500 bg-opacity-15 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold">89</div>
+                        <div class="text-xs text-blue-400 mt-1" data-i18n="beingProcessed">يتم العمل عليها</div>
+                    </div>
+
+                    <div class="stat-card animate-in delay-3">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[var(--fg-secondary)] text-sm" data-i18n="resolved">تم الحل</span>
+                            <div class="w-9 h-9 rounded-lg bg-green-500 bg-opacity-15 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold">1,142</div>
+                        <div class="text-xs text-[var(--success)] mt-1">91.5% <span data-i18n="resolutionRate">نسبة الحل</span></div>
+                    </div>
+
+                    <div class="stat-card animate-in delay-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[var(--fg-secondary)] text-sm" data-i18n="responseTime">سرعة الرد</span>
+                            <div class="w-9 h-9 rounded-lg bg-purple-500 bg-opacity-15 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold">2.4<span class="text-base font-normal">h</span></div>
+                        <div class="text-xs text-[var(--success)] mt-1">+18% <span data-i18n="improved">تحسن</span></div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <div class="glass-card p-5 animate-in delay-3">
+                        <h3 class="font-bold mb-4" data-i18n="complaintsByType">الشكاوي حسب النوع</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span data-i18n="roadsAndStreets">الطرق والشوارع</span>
+                                    <span class="text-[var(--accent)]">34%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-[var(--accent)] to-cyan-400" style="width: 34%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span data-i18n="electricity">الكهرباء</span>
+                                    <span class="text-[var(--warning)]">28%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-[var(--warning)] to-orange-400" style="width: 28%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span data-i18n="waterAndSanitation">المياه والصرف</span>
+                                    <span class="text-blue-400">22%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-blue-500 to-blue-400" style="width: 22%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span data-i18n="cleanliness">النظافة</span>
+                                    <span class="text-purple-400">16%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-purple-500 to-purple-400" style="width: 16%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 animate-in delay-4">
+                        <h3 class="font-bold mb-4" data-i18n="recentActivity">النشاط الأخير</h3>
+                        <div class="space-y-3 max-h-[280px] overflow-y-auto">
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]">
+                                <div class="w-8 h-8 rounded-full bg-green-500 bg-opacity-15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium" data-i18n="complaintResolved">تم حل شكوى #1247</p>
+                                    <p class="text-xs text-[var(--fg-secondary)] mt-0.5">شارع الجمهورية - حي الشرق</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]">
+                                <div class="w-8 h-8 rounded-full bg-blue-500 bg-opacity-15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium" data-i18n="complaintInProgress">شكوى جديدة قيد المراجعة #1248</p>
+                                    <p class="text-xs text-[var(--fg-secondary)] mt-0.5">حي العرب - مشكلة صرف صحي</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-[var(--bg-secondary)]">
+                                <div class="w-8 h-8 rounded-full bg-[var(--warning)] bg-opacity-15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg class="w-4 h-4 text-[var(--warning)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium" data-i18n="highPriority">شكوى عالية الأولوية #1249</p>
+                                    <p class="text-xs text-[var(--fg-secondary)] mt-0.5">حي المناخ - انقطاع كهرباء</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaint Page -->
+        <div id="complaintPage" class="page">
+            <div class="p-4 md:p-6 lg:p-8">
+                <!-- Header -->
+                <header class="glass-card p-4 md:p-5 mb-5 animate-in">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent)] to-cyan-600 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-lg font-bold" data-i18n="submitComplaint">تقديم شكوى جديدة</h1>
+                                <p class="text-xs text-[var(--fg-secondary)]" data-i18n="fillForm">أملأ النموذج التالي</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleTheme()" class="icon-btn">
+                                <svg id="themeIcon2" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                            </button>
+                            <button onclick="toggleLanguage()" class="icon-btn font-bold text-sm">
+                                <span id="langBtn2">EN</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Navigation -->
+                <nav class="glass-card p-2 mb-5 animate-in delay-1">
+                    <div class="flex gap-1 overflow-x-auto">
+                        <button onclick="showPage('dashboardPage')" class="nav-link" data-i18n="navDashboard">لوحة التحكم</button>
+                        <button onclick="showPage('complaintPage')" class="nav-link active" data-i18n="navComplaint">تقديم شكوى</button>
+                        <button onclick="showPage('complaintsListPage')" class="nav-link" data-i18n="navComplaints">جميع الشكاوي</button>
+                    </div>
+                </nav>
+
+                <!-- Form -->
+                <div class="glass-card p-5 md:p-8 max-w-2xl mx-auto animate-in delay-2">
+                    <form id="complaintForm" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="complaintTitle">عنوان الشكوى</label>
+                            <input type="text" class="input-field" placeholder="أدخل عنوان مختصر للشكوى" required>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="complaintType">نوع المشكلة</label>
+                                <select class="input-field" required>
+                                    <option value="" data-i18n="selectType">اختر نوع المشكلة</option>
+                                    <option value="roads" data-i18n="roadsAndStreets">الطرق والشوارع</option>
+                                    <option value="electricity" data-i18n="electricity">الكهرباء</option>
+                                    <option value="water" data-i18n="waterAndSanitation">المياه والصرف الصحي</option>
+                                    <option value="cleanliness" data-i18n="cleanliness">النظافة</option>
+                                    <option value="other" data-i18n="other">أخرى</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2" data-i18n="district">الحي</label>
+                                <select class="input-field" required>
+                                    <option value="" data-i18n="selectDistrict">اختر الحي</option>
+                                    <option value="east">حي الشرق</option>
+                                    <option value="elzhour">حي الزهور</option>
+                                    <option value="arab">حي العرب</option>
+                                    <option value="manakh">حي المناخ</option>
+                                    <option value="south">حي الجنوب</option>
+                                    <option value="eldwahi">حي الضواحي</option>
+                                    <option value="portfouad">حي بورفؤاد</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="location">الموقع التفصيلي</label>
+                            <input type="text" class="input-field" placeholder="مثال: شارع الجمهورية، بجوار مسجد النور">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="description">تفاصيل الشكوى</label>
+                            <textarea class="input-field min-h-[140px]" placeholder="اكتب تفاصيل الشكوى بشكل واضح..." required></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="attachImage">إرفاق صورة</label>
+                            <div class="file-upload" id="fileUpload">
+                                <svg class="w-10 h-10 mx-auto mb-3 text-[var(--fg-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <p class="text-[var(--fg-secondary)] text-sm mb-1" data-i18n="dragDrop">اسحب الصورة هنا أو انقر للتحميل</p>
+                                <p class="text-xs text-[var(--fg-secondary)]">PNG, JPG - 10MB max</p>
+                                <input type="file" class="hidden" accept="image/*" id="fileInput">
+                            </div>
+                            <div id="imagePreview" class="hidden mt-4 relative">
+                                <img id="previewImg" class="w-full max-h-56 object-cover rounded-xl" src="" alt="Preview">
+                                <button type="button" onclick="removeImage()" class="absolute top-2 left-2 p-2 bg-[var(--danger)] rounded-lg text-white">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 pt-3">
+                            <button type="submit" class="btn-primary" data-i18n="submitComplaintBtn">تقديم الشكوى</button>
+                            <button type="reset" class="btn-secondary" onclick="removeImage()" data-i18n="resetForm">إعادة تعيين</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tracking -->
+                <div class="glass-card p-5 md:p-6 max-w-2xl mx-auto mt-5 animate-in delay-3">
+                    <h3 class="font-bold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <span data-i18n="trackComplaint">تتبع شكواك</span>
+                    </h3>
+                    <div class="flex gap-2">
+                        <input type="text" class="input-field flex-1" placeholder="أدخل رقم الشكوى (مثال: #1247)" id="trackingInput">
+                        <button type="button" class="btn-secondary px-6" onclick="trackComplaint()" data-i18n="track">تتبع</button>
+                    </div>
+                    <div id="trackingResult" class="hidden mt-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaints List Page -->
+        <div id="complaintsListPage" class="page">
+            <div class="p-4 md:p-6 lg:p-8">
+                <!-- Header -->
+                <header class="glass-card p-4 md:p-5 mb-5 animate-in">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent)] to-cyan-600 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-lg font-bold" data-i18n="allComplaints">جميع الشكاوي</h1>
+                                <p class="text-xs text-[var(--fg-secondary)]">1,247 <span data-i18n="totalRecords">سجل</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="toggleTheme()" class="icon-btn">
+                                <svg id="themeIcon3" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                </svg>
+                            </button>
+                            <button onclick="toggleLanguage()" class="icon-btn font-bold text-sm">
+                                <span id="langBtn3">EN</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Navigation -->
+                <nav class="glass-card p-2 mb-5 animate-in delay-1">
+                    <div class="flex gap-1 overflow-x-auto">
+                        <button onclick="showPage('dashboardPage')" class="nav-link" data-i18n="navDashboard">لوحة التحكم</button>
+                        <button onclick="showPage('complaintPage')" class="nav-link" data-i18n="navComplaint">تقديم شكوى</button>
+                        <button onclick="showPage('complaintsListPage')" class="nav-link active" data-i18n="navComplaints">جميع الشكاوي</button>
+                    </div>
+                </nav>
+
+                <!-- Filters -->
+                <div class="glass-card p-3 mb-5 animate-in delay-2">
+                    <div class="flex flex-wrap gap-2">
+                        <select class="input-field w-auto min-w-[140px]" id="filterStatus" onchange="filterComplaints()">
+                            <option value="" data-i18n="allStatuses">كل الحالات</option>
+                            <option value="pending" data-i18n="pending">قيد الانتظار</option>
+                            <option value="progress" data-i18n="inProgress">جاري المعالجة</option>
+                            <option value="resolved" data-i18n="resolved">تم الحل</option>
+                        </select>
+                        <select class="input-field w-auto min-w-[140px]" id="filterType" onchange="filterComplaints()">
+                            <option value="" data-i18n="allTypes">كل الأنواع</option>
+                            <option value="roads" data-i18n="roadsAndStreets">الطرق والشوارع</option>
+                            <option value="electricity" data-i18n="electricity">الكهرباء</option>
+                            <option value="water" data-i18n="waterAndSanitation">المياه والصرف</option>
+                            <option value="cleanliness" data-i18n="cleanliness">النظافة</option>
+                        </select>
+                        <select class="input-field w-auto min-w-[140px]" id="filterPriority" onchange="filterComplaints()">
+                            <option value="" data-i18n="allPriorities">كل الأولويات</option>
+                            <option value="high" data-i18n="highPriorityOpt">عالية</option>
+                            <option value="medium" data-i18n="mediumPriorityOpt">متوسطة</option>
+                            <option value="low" data-i18n="lowPriorityOpt">منخفضة</option>
+                        </select>
+                        <select class="input-field w-auto min-w-[140px]" id="filterDistrict" onchange="filterComplaints()">
+                            <option value="" data-i18n="allDistricts">كل الأحياء</option>
+                                <option value="east">حي الشرق</option>
+                                <option value="elzhour">حي الزهور</option>
+                                <option value="arab">حي العرب</option>
+                                <option value="manakh">حي المناخ</option>
+                                <option value="south">حي الجنوب</option>
+                                <option value="eldwahi">حي الضواحي</option>
+                                <option value="portfouad">حي بورفؤاد</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- List -->
+                <div class="space-y-3" id="complaintsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
